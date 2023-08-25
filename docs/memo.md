@@ -48,9 +48,10 @@ In other words, useMemo caches a calculation result between re-renders until its
 **React.memo()** and **React.useMemo()** are both used in React for performance optimization, but they serve different purposes.
 
 - **React.memo()** is a higher-order component (HOC), which is a fancy name for a component that takes a component as a prop and returns a component that prevents a component from re-evaluation if the props (or values within it) have not changed.
-
 It is used to memoize a component, which means it caches the output of the component and only re-evaluate it if its props have changed. This can be useful when a component's evaluation is expensive (component has a large children tree). Memo can be imported from 'react' and wrapped around a functional component.
 
 - **useMemo()** is a hook that lets you cache the result of a calculation between re-renders. It takes a function and an array of dependencies as input and returns a cached value that will be re-used between renders as long as the dependencies do not change. This is useful when you have a computation that is expensive and needs to be run only when its dependencies change.
 
-In summary, memo is used for caching an entire component, while useMemo() is used for caching a specific calculation or value. Memo caches a component's output based on its props, while useMemo() caches a value based on its dependencies.
+In summary, `memo is used for caching an entire component`, while `useMemo() is used for caching a specific calculation or value`. 
+
+Memo caches a component's output based on its props, while useMemo() caches a value based on its dependencies.
