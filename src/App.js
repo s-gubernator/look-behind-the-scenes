@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import { Fragment, useState } from 'react';
 
 import 'App.css';
 import Button from 'components/UI/Button/Button';
 import DemoOutput from 'components/Demo/DemoOutput';
+// import TestComponent from 'components/ExploreUseMemo/TestComponent';
 
 function App() {
   const [showParagraph, setShowParagraph] = useState(false);
@@ -25,17 +26,21 @@ function App() {
   // - re-evaluated virtual DOM node is different than DOM node
 
   return (
-    <div className="app">
-      <h1>Hi there!</h1>
-      {/* {showParagraph && (
+    <Fragment>
+      <div className="app">
+        <h1>Hi there!</h1>
+        {/* {showParagraph && (
         <p className="centeredText">This is new paragraph</p>
       )} */}
-      {/* <DemoOutput className="centeredText" show={showParagraph} /> */}
-      <DemoOutput className="centeredText" show={false} />
-      <Button className="centeredBtn" onClick={toggleParagraphHandler}>
-        <span>Toggle paragraph</span>
-      </Button>
-    </div>
+        {/* <DemoOutput className="centeredText" show={showParagraph} /> */}
+        <DemoOutput className="centeredText" show={false} />
+        <Button className="centeredBtn" onClick={toggleParagraphHandler}>
+          <span>Toggle paragraph</span>
+        </Button>
+      </div>
+
+      {/* <TestComponent /> */}
+    </Fragment>
   );
 }
 
