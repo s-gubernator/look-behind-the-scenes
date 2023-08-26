@@ -10,6 +10,16 @@ function App() {
 
   console.log('APP RUNNING');
   console.log('Show paragraph: ', showParagraph);
+
+  // --- memo doesn't work for components that receive functions as props ---
+  // ------------------------------------------------------------------------
+  // memo compare every different props, including functions.
+  // However, by redefining function inside component in every evaluation,
+  // React creates a different reference every time
+  // (as function is reference data type).
+  // Because the identity of the function will be different on each evaluation of the parent,
+  // that causes memo to see the props as having changed, so child component will be re-evaluated.
+
   const toggleParagraphHandler = () => {
     // setShowParagraph(!showParagraph);
     setShowParagraph((prevState) => !prevState);

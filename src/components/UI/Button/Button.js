@@ -17,4 +17,6 @@ const Button = (props) => {
   );
 };
 
+// memo doesn't work here
+// export default React.memo(Button);
 export default Button;
