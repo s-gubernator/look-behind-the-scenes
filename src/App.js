@@ -7,6 +7,7 @@ import DemoOutput from 'components/Demo/DemoOutput';
 
 function App() {
   const [showParagraph, setShowParagraph] = useState(false);
+  const [allowToggle, setAllowToggle] = useState(false);
 
   console.log('APP RUNNING');
 
@@ -23,8 +24,10 @@ function App() {
   // useCallback is a React Hook that lets you cache
   // a function definition between re-renders
   const toggleParagraphHandler = useCallback(() => {
-    setShowParagraph((prevState) => !prevState);
-  }, []);
+    if (allowToggle) {
+      setShowParagraph((prevState) => !prevState);
+    }
+  }, [allowToggle]);
 
   // Re-evaluation is when react updates its VirtualDOM
   // and happens when:
@@ -36,6 +39,10 @@ function App() {
   // So re-render is when react updates DOM and happens when:
   // - re-evaluated virtual DOM node is different than DOM node
 
+  const allowToggleHandler = () => {
+    setAllowToggle(true);
+  };
+
   return (
     <Fragment>
       <div className="app">
@@ -44,6 +51,9 @@ function App() {
           <p className="centeredText">This is new paragraph</p>
         )} */}
         <DemoOutput className="centeredText" show={showParagraph} />
+        <Button className="centeredBtn" onClick={allowToggleHandler}>
+          Allow toggle
+        </Button>
         <Button className="centeredBtn" onClick={toggleParagraphHandler}>
           Toggle paragraph
         </Button>
