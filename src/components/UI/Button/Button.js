@@ -17,4 +17,6 @@ const Button = (props) => {
   );
 };
 
-export default Button;
+// if there is a function as a propery then
+// memo doesn't work without a useCallback hook in the parent component
+export default React.memo(Button);
