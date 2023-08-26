@@ -1,4 +1,4 @@
-import { Fragment, useState } from 'react';
+import React, { Fragment, useState, useCallback } from 'react';
 
 import 'App.css';
 import Button from 'components/UI/Button/Button';
@@ -9,9 +9,8 @@ function App() {
   const [showParagraph, setShowParagraph] = useState(false);
 
   console.log('APP RUNNING');
-  console.log('Show paragraph: ', showParagraph);
 
-  // --- memo doesn't work for components that receive functions as props ---
+  // --- React.memo doesn't work for components that receive functions as props ---
   // ------------------------------------------------------------------------
   // memo compare every different props, including functions.
   // However, by redefining function inside component in every evaluation,
@@ -20,10 +19,12 @@ function App() {
   // Because the identity of the function will be different on each evaluation of the parent,
   // that causes memo to see the props as having changed, so child component will be re-evaluated.
 
-  const toggleParagraphHandler = () => {
-    // setShowParagraph(!showParagraph);
+  // --- useCallback should be used here ---
+  // useCallback is a React Hook that lets you cache
+  // a function definition between re-renders
+  const toggleParagraphHandler = useCallback(() => {
     setShowParagraph((prevState) => !prevState);
-  };
+  }, []);
 
   // Re-evaluation is when react updates its VirtualDOM
   // and happens when:
@@ -40,12 +41,11 @@ function App() {
       <div className="app">
         <h1>Hi there!</h1>
         {/* {showParagraph && (
-        <p className="centeredText">This is new paragraph</p>
-      )} */}
-        {/* <DemoOutput className="centeredText" show={showParagraph} /> */}
-        <DemoOutput className="centeredText" show={false} />
+          <p className="centeredText">This is new paragraph</p>
+        )} */}
+        <DemoOutput className="centeredText" show={showParagraph} />
         <Button className="centeredBtn" onClick={toggleParagraphHandler}>
-          <span>Toggle paragraph</span>
+          Toggle paragraph
         </Button>
       </div>
 
